@@ -6,4 +6,8 @@ module.exports = (app) => {
     app.get('/debug-sentry-7', (req, res) => {
         throw new Error('Again again.');
     });
+
+    app.get('/debug-sentry-8', (req, res) => {
+        throw new Error('Again again again.');
+    });
 };
