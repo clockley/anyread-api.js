@@ -7,7 +7,7 @@ app.listen(port);
 
 Sentry.init({ 
   dsn: 'https://3781cd5673024f20a96a7880d77f5bcb@sentry.io/1477852',
-  release: 'api-1.2.0'
+  release: 'api-1.3.0'
 });
 
 app.use(Sentry.Handlers.requestHandler());
