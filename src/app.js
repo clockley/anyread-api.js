@@ -22,6 +22,10 @@ app.get('/debug-sentry-2', (req, res) => {
   throw new Error('My second Sentry error!');
 });
 
+app.get('/debug-sentry-3', (req, res) => {
+  throw new Error('My third Sentry error!');
+});
+
 app.use(Sentry.Handlers.errorHandler());
 
 module.exports = app;
