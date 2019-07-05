@@ -26,6 +26,10 @@ app.get('/debug-sentry-4', (req, res) => {
   throw new Error('My last Sentry error!');
 });
 
+app.get('/debug-sentry-5', (req, res) => {
+  throw new Error('My last Sentry error, for real this time!');
+});
+
 app.use(Sentry.Handlers.errorHandler());
 
 module.exports = app;
