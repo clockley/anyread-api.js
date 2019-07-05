@@ -1,6 +1,7 @@
 const Sentry = require('@sentry/node');
 const express = require('express');
 const readerController = require('./controllers/readerController');
+const errorEndpoint = require('./errorEndpoint');
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.get('/debug-sentry-4', (req, res) => {
 app.get('/debug-sentry-5', (req, res) => {
   throw new Error('My last Sentry error, for real this time!');
 });
+
+errorEndpoint(app);
 
 app.use(Sentry.Handlers.errorHandler());
 
