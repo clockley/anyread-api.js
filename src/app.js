@@ -4,10 +4,6 @@ const readerController = require('./controllers/readerController');
 
 const app = express();
 
-Sentry.init({
-  release: 'a5cc17d885c02358d1e4a875c7c61723a182fb1e'
-});
-
 app.get('/', (req, res) => {
   res.sendfile('index.html');
 });

@@ -5,7 +5,10 @@ const port = process.env.PORT || 3000;
 
 app.listen(port);
 
-Sentry.init({ dsn: 'https://3781cd5673024f20a96a7880d77f5bcb@sentry.io/1477852' });
+Sentry.init({ 
+  dsn: 'https://3781cd5673024f20a96a7880d77f5bcb@sentry.io/1477852',
+  release: 'raoul'
+});
 
 app.use(Sentry.Handlers.requestHandler());
 
