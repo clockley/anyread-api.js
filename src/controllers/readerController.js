@@ -48,3 +48,48 @@ exports.parseUrl = async (req, res) => {
     });
   }
 };
+
+exports.parseFile = (req, res) => {
+  const { query } = req;
+
+  file = req.files.file;
+
+  if (!query || !file) {
+    const err = 'No file provided';
+    logger.log(err, 'debug');
+    return res.status(400).send({
+      error: err,
+      success: false
+    });
+  }
+
+  try {
+    const fileContent = file.data;
+    const dom = new JSDOM(fileContent);
+    const parsedContent = new Readability(dom.window.document).parse();
+
+    const response = {
+      article: parsedContent,
+      success: true
+    };
+
+    return res.status(200).send(response);
+  }
+  catch (e) {
+    logger.log(e.stack, 'debug');
+
+    if (e instanceof errors.RequestError) {
+      if (e.message.includes('Invalid URI')) {
+        return res.status(404).send({
+          error: 'URL provided is not a valid URL',
+          success: false
+        });
+      }
+    }
+
+    return res.status(500).send({
+      error: 'Could not parse the URL provided',
+      success: false
+    });
+  }
+};
